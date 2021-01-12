@@ -42,10 +42,22 @@ def make_chains(text_string):
         >>> chains[('there','juanita')]
         [None]
     """
+    # Replace text string line breaks with a space
+    # Assign split text string by the spaces to variable words = text_string.split()
+    # Loop through words and send each pair of words to chains as as key
+        #Find the words that come after that pair and add to a list of values that go to that pair
 
+    words = text_string.rstrip().split()
     chains = {}
 
-    # your code goes here
+    for i in range(len(words) - 2):
+        key = (words[i], words[i + 1])
+        value = words[i + 2]
+
+        if key not in chains:
+            chains[key] = []
+
+        chains[key].append(value)    
 
     return chains
 
