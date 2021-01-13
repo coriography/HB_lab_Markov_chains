@@ -1,5 +1,6 @@
 """Generate Markov text from text files."""
 
+import random
 from random import choice
 
 
@@ -64,12 +65,48 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
+    
+    # pick random key 
+    # put chosen key into words list
+    # pick random value of key
+    # rand_value = chains[rand_key]
+        # loop through values of our chosen key
+    # add random value to words list
+    # assign last two words to variable, last_words = words[-2:] - this gives us new key
+    # then select new rand_value
+    # repeat until last two items in words list are not key in chains
 
     words = []
+    
+    key_list = sorted(chains)
+    print(f' this is our key list: {key_list}')
 
-    # your code goes here
+    rand_key = random.choice(key_list)
+    print(f' this is rand_key {rand_key}')
 
-    return ' '.join(words)
+    words.append(rand_key)
+    print(f'this is words {words}')
+
+    values = chains[rand_key]
+    print(f'this is values {values}')
+
+    rand_value = random.choice(values)
+    print(f'this is rand_value {rand_value}')
+
+    words.append(rand_value)
+    print(f'this is words {words}')
+
+    last_words = words[-2:]
+
+    # if last_words in chains:
+        # create new key with new last two words
+        # get random value
+        # append new value
+
+
+    # print(words)
+    # return words
+    # return ' '.join(words)
 
 
 input_path = 'green-eggs.txt'
