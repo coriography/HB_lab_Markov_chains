@@ -65,48 +65,51 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-    
-    # pick random key 
-    # put chosen key into words list
-    # pick random value of key
-    # rand_value = chains[rand_key]
-        # loop through values of our chosen key
-    # add random value to words list
-    # assign last two words to variable, last_words = words[-2:] - this gives us new key
-    # then select new rand_value
-    # repeat until last two items in words list are not key in chains
 
-    words = []
-    
+    sentence = []
     key_list = sorted(chains)
-    print(f' this is our key list: {key_list}')
 
-    rand_key = random.choice(key_list)
-    print(f' this is rand_key {rand_key}')
+    # pick random key 
+    current_key = random.choice(key_list)
 
-    words.append(rand_key)
-    print(f'this is words {words}')
+    # put chosen key into sentence list
+    sentence.extend(current_key)
 
-    values = chains[rand_key]
-    print(f'this is values {values}')
+    # repeat until last two items in sentence list are not a key in chains:
+    while current_key in chains: 
 
-    rand_value = random.choice(values)
-    print(f'this is rand_value {rand_value}')
+        # select random value of key
+        # values = chains[current_key]
+        rand_value = random.choice(chains[current_key])
 
-    words.append(rand_value)
-    print(f'this is words {words}')
+        # add random value to sentence list
+        sentence.append(rand_value)
 
-    last_words = words[-2:]
-
-    # if last_words in chains:
-        # create new key with new last two words
-        # get random value
-        # append new value
+        # assign last two sentence to variable this gives us new key
+        current_key = tuple(sentence[-2:])
+        
+    return ' '.join(sentence)
 
 
-    # print(words)
-    # return words
-    # return ' '.join(words)
+# Hackbright's solution:
+# def make_text(chains):
+#     """Return text from chains."""
+
+#     key = choice(list(chains.keys()))
+#     words = [key[0], key[1]]
+#     word = choice(chains[key])
+
+#     # Keep looping until we reach a value of None
+#     # (which would mean it was the end of our original text)
+#     # Note that for long texts (like a full book), this might mean
+#     # it would run for a very long time.
+
+#     while word is not None:
+#         key = (key[1], word)
+#         words.append(word)
+#         word = choice(chains[key])
+
+#     return ' '.join(words)
 
 
 input_path = 'green-eggs.txt'
